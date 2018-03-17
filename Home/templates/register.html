@@ -1,5 +1,10 @@
+{% load static %}
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<script type="text/javascript" src="{% static 'jquery.particleground.js'%}"></script>
+<script type="text/javascript" src="{% static 'demo.js'%}"></script>
+<body style="background-color: #3f97ab;">
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -30,6 +35,7 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+</body>
 <style>
 input, select {
     width: 100%;
@@ -75,6 +81,8 @@ label {
 }
 </style>
 <br><br><br>
+<div id="particles">
+	<div id="intro">
 <div id="box" class="effect">
 <form class="alb" action="" method="post">
     {% csrf_token %}
@@ -83,8 +91,8 @@ label {
         <div>
             <span>{{ field.errors }}</span>
         </div>
-    <label class="labels" style="text-align: center">{{ field.label_tag }}</label>
-    <div class="fields">
+    <label class="labels" style="text-align: center; color:black;">{{ field.label_tag }}</label>
+    <div class="fields" style="color:black;">
         {{ field }}
     </div>
     </div>
@@ -93,4 +101,6 @@ label {
         <button type="submit" class="btn">Register</button>
     </div>
 </form>
+</div>
+</div>
 </div>

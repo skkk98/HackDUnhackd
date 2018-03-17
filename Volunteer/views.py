@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.views.generic import TemplateView, View
 from Ngo.models import Event
 from .models import Regevent
+import datetime
 # Create your views here.
 """class profile(TemplateView):
     template_name = 'profile.html'"""
@@ -66,4 +67,5 @@ def regd_events(request):
     print(list_events)
     list_events = list_events[:-1]
     events = Event.objects.filter(id__in=list_events)
-    return render(request, template_name, {'events': events})
+    return render(request, template_name, {'events': events,
+                                                'datetime': datetime.date.today})

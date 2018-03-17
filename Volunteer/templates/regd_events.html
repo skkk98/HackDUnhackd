@@ -72,8 +72,8 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <body>
 hey {{ user.username }}<br>
-Here are your Registered Events<br>
-
+Here are your Registered Events<br><br>
+If you are looking at a review button that means the event is over and you can give feedback
 {% for event in events %}
     <div class="box effect1">
     <div class="img">
@@ -83,12 +83,19 @@ Here are your Registered Events<br>
 
     <h3 style="padding-left: 190px">{{ event.title }}</h3>
     <p style="padding-left: 190px">{{ event.description }}</p>
+    {% if event.to >= datetime %}
     <a href="{% url 'Vol:event-unregister' event.id user.id %}" onclick="" id="but" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span> Unregister
     </a>
+    {% endif %}
+    {% if event.to < datetime %}
+    <a href="#" onclick="" id="but" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span> Review
+    </a>
+    {% endif %}
     <div id="bottom" style="padding-left: 190px">
      <h5 style="float: left">{{ event.place }}</h5>
     <h5 style="float: right">{{ event.user }} - {{ event.contact }}</h5>
     </div>
+
 
 </div>
 {% endfor %}

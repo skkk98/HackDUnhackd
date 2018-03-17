@@ -104,23 +104,23 @@ p {
 .btn {
   display: inline-block;
   padding: 15px 30px;
-  border: 2px solid #fff;
+  border: 2px solid #005544;
   text-transform: uppercase;
   letter-spacing: 0.015em;
   font-size: 18px;
   font-weight: 700;
   line-height: 1;
-  color: #fff;
+  color: #005544;
   text-decoration: none;
   -webkit-transition: all 0.4s;
      -moz-transition: all 0.4s;
        -o-transition: all 0.4s;
           transition: all 0.4s;
 }
-.btn:hover {
+/*.btn:hover {
   color: #005544;
   border-color: #005544;
-}
+}*/
 
 @media only screen and (max-width: 1000px) {
   h1 {
