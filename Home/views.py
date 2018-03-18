@@ -26,15 +26,18 @@ class Register(View):
             username = form.cleaned_data['username']
             email = form.cleaned_data['email']
             registeras = form.cleaned_data['Register_As']
-            user = User(username=username, email=email)
-            user.set_password(password)
-            user.save()
-            login(request, user)
-            user_id = request.user
-            reg = Type(user=user_id, Register_As=registeras)
-            reg.save()
-            logout(request)
-            return HttpResponse('successfully registered <a href="/login"><strong>Click Here</strong></a><a>to Login</a>')
+            if password == confirm_password:
+                user = User(username=username, email=email)
+                user.set_password(password)
+                user.save()
+                login(request, user)
+                user_id = request.user
+                reg = Type(user=user_id, Register_As=registeras)
+                reg.save()
+                logout(request)
+                return HttpResponse('successfully registered <a href="/login"><strong>Click Here</strong></a><a>to Login</a>')
+            else:
+                return HttpResponse('Passwords do not match <a href=""><strong>Click Here</strong></a><a>to try again</a>')    
 
         return render(request, self.template_name, {'form': form})
 

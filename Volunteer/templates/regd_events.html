@@ -1,4 +1,5 @@
 {% csrf_token %}
+
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -88,7 +89,7 @@ If you are looking at a review button that means the event is over and you can g
     </a>
     {% endif %}
     {% if event.to < datetime %}
-    <a href="#" onclick="" id="but" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span> Review
+    <a href="#" onclick="" id="but" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span> Feedback
     </a>
     {% endif %}
     <div id="bottom" style="padding-left: 190px">
@@ -99,5 +100,6 @@ If you are looking at a review button that means the event is over and you can g
 
 </div>
 {% endfor %}
+
 
 </body>
