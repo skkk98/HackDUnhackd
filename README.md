@@ -8,6 +8,9 @@ There is no support for django on IBM cloud. Could not find appropriate boilerpl
 
 You need Django version 1.11 to run this project. 
 Navigate to the folder where this project is downloaded and run the command 'python3 manage.py runserver'
+use accounts kalyan qwertyuiop volunteer
+             dude qwertyuiop NGO
+             
 
 Participants-
 S K Kalyan Kumar - kumarkalyan.1998@gmail.com
