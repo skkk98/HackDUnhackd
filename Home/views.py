@@ -5,6 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from .models import Type
+from Volunteer.models import Regevent
 # Create your views here.
 class HomePage(TemplateView):
     template_name = 'home.html'
@@ -34,10 +35,12 @@ class Register(View):
                 user_id = request.user
                 reg = Type(user=user_id, Register_As=registeras)
                 reg.save()
+                regevent = Regevent(user=user_id)
+                regevent.save()
                 logout(request)
                 return HttpResponse('successfully registered <a href="/login"><strong>Click Here</strong></a><a>to Login</a>')
             else:
-                return HttpResponse('Passwords do not match <a href=""><strong>Click Here</strong></a><a>to try again</a>')    
+                return HttpResponse('Passwords do not match <a href=""><strong>Click Here</strong></a><a>to try again</a>')
 
         return render(request, self.template_name, {'form': form})
 
