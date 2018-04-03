@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic.edit import UpdateView
 from .forms import EventForm
 from .models import Event
+from Volunteer.models import Feedback
 from django.contrib.auth.models import User
 from django.template import RequestContext
 from django.core.urlresolvers import reverse_lazy
@@ -91,8 +92,10 @@ def add_event(request):
 def event_full(request, event_id):
     template_name = 'event_full.html'
     event = Event.objects.get(id=int(event_id))
+    feedback = Feedback.objects.filter(event=int(event_id))
     list_users = event.users.split('&')
     list_users = list_users[:-1]
     regd_users = User.objects.filter(id__in=list_users)
     return render(request, template_name, {'regd_users': regd_users,
-                                           'event': event})
+                                           'event': event,
+                                           'feedback': feedback})

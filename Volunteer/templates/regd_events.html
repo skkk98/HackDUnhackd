@@ -89,7 +89,7 @@ If you are looking at a review button that means the event is over and you can g
     </a>
     {% endif %}
     {% if event.to < datetime %}
-    <a href="#" onclick="" id="but" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span> Feedback
+    <a href="{% url 'Vol:feedback' event.id %}" onclick="" id="but" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span> Feedback
     </a>
     {% endif %}
     <div id="bottom" style="padding-left: 190px">

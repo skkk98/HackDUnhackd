@@ -2,7 +2,11 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.views.generic import TemplateView, View
 from Ngo.models import Event
-from .models import Regevent
+from .models import Regevent, Feedback
+from .forms import FeedbackForm
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
+from django.conf import settings
 import datetime
 # Create your views here.
 """class profile(TemplateView):
@@ -31,6 +35,14 @@ def event_reg(request, event_id, user_id):
     else:
         regevent = Regevent(user=users, events=str(event_id) + '&')
         regevent.save()
+    message = render_to_string('event_description.html', {
+
+    })
+    mail_subject = 'Details Of the Registered Event'
+    to_email = users.email
+    email = EmailMessage(mail_subject, message, settings.EMAIL_HOST_USER, to=[to_email])
+    email.attach_file('/home/kalyan/PycharmProjects/HackdUnhackd' + findevent.image.url)
+    email.send()
     return HttpResponseRedirect('/volunteer/profile')
 
 def event_unreg(request, event_id, user_id):
@@ -69,3 +81,18 @@ def regd_events(request):
     events = Event.objects.filter(id__in=list_events)
     return render(request, template_name, {'events': events,
                                                 'datetime': datetime.date.today})
+
+def feedback(request, event_id):
+    if request.method == 'GET':
+        form = FeedbackForm()
+        return render(request, 'feedback.html', {'form': form})
+    else:
+        review = request.POST['review']
+
+        feedback = Feedback()
+        findevent = Event.objects.get(pk=event_id)
+        feedback.event = findevent
+        feedback.review = review
+
+        feedback.save()
+        return HttpResponse('Thanks for your feedback')
