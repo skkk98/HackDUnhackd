@@ -90,7 +90,7 @@ Click on registered events tab to check which events you have registered to.
 
     <h3 style="padding-left: 190px">{{ event.title }}</h3>
     <p style="padding-left: 190px">{{ event.description }}</p>
-    <a href="{% url 'Vol:event-register' event.id user.id %}" onclick="" id="but" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-ok"></span> Register
+    <a href="{% url 'Vol:event-register' event.id user.id %}" onclick="" id="but" class="btn btn-success btn-sm" data-id="{{ event.id }}"><span class="glyphicon glyphicon-ok"></span> Register
         </a>
     <div id="bottom" style="padding-left: 190px">
      <h5 style="float: left">{{ event.place }}</h5>
@@ -101,3 +101,32 @@ Click on registered events tab to check which events you have registered to.
 
 {% endfor %}
 </body>
+
+
+<!-- AJAXify -->
+
+<script>
+
+    $(document).on('click', '#but', function(e){
+      e.preventDefault();
+      var data = { }
+      data['event_id'] = $(e.target).attr('data-id')
+      data['user_id'] = {{user.id}}
+      data['csrfmiddlewaretokern'] = {% csrf_token %}
+      $.ajax({
+        type: 'POST',
+        url: '/'+ 'volunteer/'+ data['event_id'] + '/' + data['user_id'] + '/regevent',
+        data: data,
+
+        success: function(){
+          console.log('Yeah bro!!');
+        },
+
+        error: function(){
+          console.log('WTF bro??!!');
+        },
+
+      })
+    })
+
+</script>

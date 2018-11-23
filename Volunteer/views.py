@@ -43,7 +43,7 @@ def event_reg(request, event_id, user_id):
     email = EmailMessage(mail_subject, message, settings.EMAIL_HOST_USER, to=[to_email])
     email.attach_file('/home/kalyan/PycharmProjects/HackdUnhackd' + findevent.image.url)
     email.send()
-    return HttpResponseRedirect('/volunteer/profile')
+    return HttpResponseRedirect('/volunteer/profile/')
 
 def event_unreg(request, event_id, user_id):
     # remove user_id from event

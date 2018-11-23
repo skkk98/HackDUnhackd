@@ -25,8 +25,8 @@ urlpatterns = [
     url(r'^register/$', Register.as_view(), name='register'),
     url(r'^login/$',Login.as_view(), name='login'),
     url(r'^logout/$', Logout, name='logout'),
-    url(r'^volunteer/', include('Volunteer.urls', namespace='Vol')),
-    url(r'^ngo/', include('Ngo.urls', namespace='Ngo')),
+    url(r'^volunteer/', include(('Volunteer.urls','Volunteer'), namespace='Vol')),
+    url(r'^ngo/', include(('Ngo.urls', 'Ngo'), namespace='Ngo')),
 ]
 
 if settings.DEBUG:

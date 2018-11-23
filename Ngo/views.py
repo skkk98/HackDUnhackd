@@ -7,7 +7,7 @@ from .models import Event
 from Volunteer.models import Feedback
 from django.contrib.auth.models import User
 from django.template import RequestContext
-from django.core.urlresolvers import reverse_lazy
+#from django.core.urlresolvers import reverse_lazy
 # Create your views here.
 def update_event(request, event_id):
     event = Event.objects.get(id=event_id)
